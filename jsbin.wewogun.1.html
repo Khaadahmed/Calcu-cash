@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by Khaadahmed (http://jsbin.com/wewogun/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    .display {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 15px;
+      text-align: right;
+      font-size: 2em;
+      padding: 0 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+      box-sizing: border-box;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .btn {
+      padding: 18px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      background: #e0e0e0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn.operator {
+      background: #ffb266;
+      color: #fff;
+    }
+    .btn.equal {
+      background: #66b3ff;
+      color: #fff;
+      grid-column: span 2;
+    }
+    .btn.clear {
+      background: #ff6666;
+      color: #fff;
+    }
+    .btn:active {
+      background: #b3b3b3;
+    }
+    .open-salary {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      font-size: 1.1em;
+      background: #34a853;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .open-salary:active {
+      background: #277a3d;
+    }
+  </style>
+<style id="jsbin-css">
+* {
+  box-sizing: border-box;
+}
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  font:
+    1.2em Helvetica,
+    arial,
+    sans-serif;
+}
+
+.wrapper > * {
+  border: 2px solid #f08c00;
+  background-color: #ffec99;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-head {
+  grid-area: header;
+}
+.content {
+  grid-area: content;
+}
+.main-nav {
+  grid-area: nav;
+}
+.side {
+  grid-area: sidebar;
+}
+.ad {
+  grid-area: ad;
+}
+.main-footer {
+  grid-area: footer;
+}
+
+.wrapper {
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    "header"
+    "nav"
+    "content"
+    "sidebar"
+    "ad"
+    "footer";
+}
+
+@media (width >= 500px) {
+  .wrapper {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+      "header  header"
+      "nav     nav"
+      "sidebar content"
+      "ad      footer";
+  }
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (width >= 700px) {
+  .wrapper {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas:
+      "header header  header"
+      "nav    content sidebar"
+      "nav    content ad"
+      "footer footer  footer";
+  }
+  nav ul {
+    flex-direction: column;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" class="display" id="display" disabled>
+    <div class="buttons">
+      <button class="btn" onclick="appendValue('7')">7</button>
+      <button class="btn" onclick="appendValue('8')">8</button>
+      <button class="btn" onclick="appendValue('9')">9</button>
+      <button class="btn operator" onclick="appendOperator('/')">÷</button>
+
+      <button class="btn" onclick="appendValue('4')">4</button>
+      <button class="btn" onclick="appendValue('5')">5</button>
+      <button class="btn" onclick="appendValue('6')">6</button>
+      <button class="btn operator" onclick="appendOperator('*')">×</button>
+
+      <button class="btn" onclick="appendValue('1')">1</button>
+      <button class="btn" onclick="appendValue('2')">2</button>
+      <button class="btn" onclick="appendValue('3')">3</button>
+      <button class="btn operator" onclick="appendOperator('-')">−</button>
+
+      <button class="btn" onclick="appendValue('0')">0</button>
+      <button class="btn" onclick="appendDot()">.</button>
+      <button class="btn equal" onclick="calculateResult()">=</button>
+      <button class="btn operator" onclick="appendOperator('+')">+</button>
+
+      <button class="btn clear" style="grid-column: span 4;" onclick="clearDisplay()">C</button>
+    </div>
+    <button class="open-salary" onclick="openSalaryCalculator()">Open Salary Calculator</button>
+  </div>
+  <script>
+    const display = document.getElementById('display');
+    let currentInput = '';
+    let lastWasOperator = false;
+
+    function appendValue(num) {
+      if (display.value === "Error") clearDisplay();
+      currentInput += num;
+      display.value = currentInput;
+      lastWasOperator = false;
+    }
+
+    function appendOperator(operator) {
+      if (display.value === "Error") clearDisplay();
+      if (currentInput === '' && operator !== '-') return;
+      if (lastWasOperator) {
+        // Replace last operator
+        currentInput = currentInput.slice(0, -1) + operator;
+      } else {
+        currentInput += operator;
+      }
+      display.value = currentInput;
+      lastWasOperator = true;
+    }
+
+    function appendDot() {
+      if (display.value === "Error") clearDisplay();
+      // Prevent multiple dots in the same number
+      let parts = currentInput.split(/[\+\-\*\/]/);
+      let last = parts[parts.length - 1];
+      if (!last.includes('.')) {
+        currentInput += '.';
+        display.value = currentInput;
+        lastWasOperator = false;
+      }
+    }
+
+    function calculateResult() {
+      if (display.value === "Error") clearDisplay();
+      try {
+        let res = eval(currentInput);
+        display.value = res;
+        currentInput = res.toString();
+        lastWasOperator = false;
+      } catch (e) {
+        display.value = "Error";
+        currentInput = '';
+        lastWasOperator = false;
+      }
+    }
+
+    function clearDisplay() {
+      currentInput = '';
+      display.value = '';
+      lastWasOperator = false;
+    }
+
+    function openSalaryCalculator() {
+      window.open('salary_calculator.html', '_blank', 'width=400,height=400');
+    }
+  </script>
+</body>
+</html
