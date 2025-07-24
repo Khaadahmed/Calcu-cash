@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Salary Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .salary-calculator {
+      background: #fff;
+      padding: 24px 30px 30px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      width: 340px;
+    }
+    .salary-calculator h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.5em;
+      text-align: center;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 8px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .calculate-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.1em;
+      background: #4285f4;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      transition: background 0.2s;
+    }
+    .calculate-btn:active {
+      background: #1b65c1;
+    }
+    .result {
+      text-align: center;
+      font-size: 1.15em;
+      margin-top: 5px;
+      color: #222;
+      min-height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="salary-calculator">
+    <h2>Salary Calculator</h2>
+    <div class="input-group">
+      <label for="basic">Basic Salary:</label>
+      <input type="number" id="basic" placeholder="Enter basic salary">
+    </div>
+    <div class="input-group">
+      <label for="hra">HRA (House Rent Allowance):</label>
+      <input type="number" id="hra" placeholder="Enter HRA">
+    </div>
+    <div class="input-group">
+      <label for="allowances">Other Allowances:</label>
+      <input type="number" id="allowances" placeholder="Enter other allowances">
+    </div>
+    <div class="input-group">
+      <label for="deductions">Deductions:</label>
+      <input type="number" id="deductions" placeholder="Enter deductions">
+    </div>
+    <button class="calculate-btn" onclick="calculateSalary()">Calculate Net Salary</button>
+    <div class="result" id="result"></div>
+  </div>
+  <script>
+    function calculateSalary() {
+      const basic = parseFloat(document.getElementById('basic').value) || 0;
+      const hra = parseFloat(document.getElementById('hra').value) || 0;
+      const allowances = parseFloat(document.getElementById('allowances').value) || 0;
+      const deductions = parseFloat(document.getElementById('deductions').value) || 0;
+      const net = basic + hra + allowances - deductions;
+      document.getElementById('result').textContent = "Net Salary: " + net.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+  </script>
+</body>
+</html>
