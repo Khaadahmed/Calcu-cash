@@ -1,45 +1,51 @@
-## Calcu-cash
- 🧮 Simple Calculator & 💼 Salary Calculator
+# 🧮 Calcu-cash
 
-This project contains:
-- A **Simple Calculator** for basic arithmetic operations.
-- A **Salary Calculator** (opens in a new tab) for quick net salary calculations.
+Live Demo: [https://khaadahmed.github.io/Calcu-cash/](https://khaadahmed.github.io/Calcu-cash/) 🚀
 
 ---
 
-## 🚀 Features
+## 🧾 Description
 
-- **Basic Calculator:** Addition, subtraction, multiplication, division, decimals.
-- **Salary Calculator:** Enter Basic Salary, HRA, Other Allowances, and Deductions to get Net Salary.
-- **Clean UI:** Responsive and user-friendly interface.
-- **Open Salary Calculator:** Click the button on the main calculator to open the salary calculator in a new window/tab.
+**Calcu-cash** is a simple and user-friendly web app for both basic arithmetic calculations and quick salary calculations.  
+- 🧮 **Calculator:** Perform addition, subtraction, multiplication, division, and decimal operations.  
+- 💼 **Salary Calculator:** Open the salary calculator in a new tab to compute your net salary by entering basic salary, HRA, other allowances, and deductions.
+
+---
+
+## ✨ Features
+
+- Responsive calculator UI
+- One-click access to salary calculator (opens in new window/tab)
+- Clean design and easy to use
+- Written in pure HTML, CSS, and JavaScript (no frameworks)
 
 ---
 
 ## 📂 Files
 
-- `calculator.html` — Main calculator interface, with button to open salary calculator.
-- `salary_calculator.html` — Salary calculator (opens in new window/tab).
-- `README.md` — This file.
+- `calculator.html` – Main calculator interface
+- `salary_calculator.html` – Salary calculator (opens in new tab)
+- `README.md` – Project documentation
 
 ---
 
 ## 🖥️ Usage
 
-1. **Open `calculator.html` in your web browser.**
-2. Use the calculator as needed.
-3. To calculate net salary, click the **"Open Salary Calculator"** button.
-4. Fill in the fields and click "Calculate Net Salary" to get your result.
+1. **Open [`calculator.html`](https://khaadahmed.github.io/Calcu-cash/) in your browser.**
+2. Use the calculator for basic math.
+3. Tap "Open Salary Calculator" to launch the salary calculator in a new tab.
+4. Enter your salary details and get your net salary instantly!
 
 ---
 
 ## 📸 Screenshot
 
-![Simple Calculator Screenshot](https://user-images.githubusercontent.com/your-screenshot-url.png)
+<!-- You can add your screenshot here if available -->
+<!-- ![Screenshot](screenshot.png) -->
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
 - HTML
 - CSS
@@ -47,13 +53,9 @@ This project contains:
 
 ---
 
-## ❤️ Contributions
-
-Feel free to fork this project and submit pull requests!
-
----
-
-## 📝 License
+## 📄 License
 
 MIT
 
+---
+### ❤️ Made with love by [Khaadahmed](https://github.com/Khaadahmed)
